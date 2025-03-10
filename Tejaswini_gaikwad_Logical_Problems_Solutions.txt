@@ -1,0 +1,267 @@
+1. Sum of First n Numbers
+Problem: Print sum of first n numbers.
+# Function to calculate sum of first n numbers
+def sum_n(n):
+ return sum(range(1, n + 1))
+# Example
+n = 5
+print("Sum of first", n, "numbers is:", sum_n(n))
+
+Output:
+Sum of first 5 numbers is: 15
+.............................................................
+
+2. Odd/Even Numbers from 1 to n
+Problem: Print list of odd and even numbers from 1 to n.
+# Function to find odd and even numbers
+def odd_even(n):
+ even_nums = [i for i in range(1, n + 1) if i % 2 == 0]
+ odd_nums = [i for i in range(1, n + 1) if i % 2 != 0]
+ return even_nums, odd_nums
+
+# Example
+n = 10
+evens, odds = odd_even(n)
+print("Even numbers:", evens)
+print("Odd numbers:", odds)
+
+Output:
+Even numbers: [2, 4, 6, 8, 10]
+Odd numbers: [1, 3, 5, 7, 9]
+..............................................................
+
+3. Pattern with While Loop
+Problem: Use while loop to print pattern with sets of 5 numbers and *.
+# Function to print pattern
+def pattern(n):
+ i = 1
+ while i <= n:
+ if (i - 1) % 10 < 5:
+ print(i, end=" ")
+ else:
+ print("*", end=" ")
+ i += 1
+ print()
+
+# Example
+pattern(19)
+
+Output:
+1 2 3 4 5 * * * * * 11 12 13 14 15 * * * *
+.....................................................................
+
+4. Factorial of n
+Problem: Print factorial of a number n.
+# Function to calculate factorial
+def factorial(n):
+ fact = 1
+ for i in range(1, n + 1):
+ fact *= i
+ return fact
+
+# Example
+n = 4
+print("Factorial of", n, "is:", factorial(n))
+
+Output:
+Factorial of 4 is: 24
+......................................................................
+
+5. Prime Number Check
+Problem: Check whether a number is prime or not.
+# Function to check prime number
+def is_prime(n):
+ if n < 2:
+ return False
+ for i in range(2, int(n ** 0.5) + 1):
+ if n % i == 0:
+ return False
+ return True
+
+# Example
+n = 6
+print("Is", n, "a prime number?:", is_prime(n))
+Output:
+Is 6 a prime number?: False
+.......................................................................
+
+6. Print Pattern
+Problem: Print a simple pattern.
+# Function to print pattern
+def pattern():
+ for i in range(1, 4):
+ for j in range(1, i + 1):
+ print(j, end=" ")
+ print()
+
+# Example
+pattern()
+Output:
+1
+1 2
+1 2 3
+.......................................................................
+
+7. Inverted Triangle Pattern
+Problem: Print an inverted triangle pattern.
+# Function to print inverted triangle pattern
+def inverted_triangle():
+ for i in range(3, 0, -1):
+ print(" " * (3 - i) + " ".join(str(j) for j in range(i, 0, -1))
+
+# Example
+inverted_triangle()
+
+Output:
+3 2 1
+ 2 1
+ 1
+.........................................................................
+
+8. Count Character Occurrences
+Problem: Count the frequency of each character in a string.
+from collections import Counter
+# Function to count character occurrences
+def char_count(s):
+ return dict(Counter(s))
+
+# Example
+print(char_count("aabbcdddededfg"))
+
+Output:
+{'a': 2, 'b': 2, 'c': 1, 'd': 5, 'e': 2, 'f': 1, 'g': 1}
+..........................................................................
+
+9. Convert 0s and 1s to Values
+# Function to convert binary string to values
+def binary_value(s):
+ return sum(1 if ch == '0' else 2 for ch in s)
+
+# Example
+print(binary_value("00010110"))
+
+Output:
+11
+............................................................................
+
+10. Intersection of Two Lists
+# Function to find intersection of two lists
+def intersection(list1, list2):
+ return list(set(list1) & set(list2))
+
+# Example
+print(intersection([1, 2, 3, 4, 5], [3, 4, 6]))
+
+Output:
+[3, 4]
+............................................................................
+
+11. Check if a String is a Palindrome
+def is_palindrome(s):
+ return s == s[::-1]
+print(is_palindrome("madam"))
+
+Output:
+True
+.............................................................................
+
+12. Generate Fibonacci Sequence
+def fibonacci(n):
+ fib = [0, 1]
+ for _ in range(n - 2):
+ fib.append(fib[-1] + fib[-2])
+ return fib[:n]
+print(fibonacci(10))
+
+Output :
+The first 10 numbers in the Fibonacci sequence are:
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+.............................................................................
+
+13. Matrix Transposition
+def transpose(matrix):
+ return list(map(list, zip(*matrix)))
+matrix = [[1, 2, 3], [4, 5, 6]]
+print(transpose(matrix))
+
+Output :
+[[1, 4],
+ [2, 5],
+ [3, 6]]
+..................................................................................
+
+14. Binary Search (Iterative)
+def binary_search(arr, target):
+ left, right = 0, len(arr) - 1
+ while left <= right:
+mid = (left + right) // 2
+ if arr[mid] == target:
+ return mid
+ elif arr[mid] < target:
+ left = mid + 1
+ else:
+ right = mid - 1
+ return -1
+print(binary_search([1, 2, 3, 4, 5], 3))
+
+Output:
+2
+..............................................................................
+
+15. Two Sum Problem
+def two_sum(nums, target):
+ num_map = {}
+ for i, num in enumerate(nums):
+ if target - num in num_map:
+ return [num_map[target - num], i]
+ num_map[num] = i
+ return []
+print(two_sum([2, 7, 11, 15], 9))
+
+Output:
+[0, 1]
+..........................................................................
+
+16. Find kth Largest Element
+def kth_largest(arr, k):
+ return sorted(arr, reverse=True)[k - 1]
+print(kth_largest([3, 2, 1, 5, 6, 4], 2))
+
+Output:
+5
+..........................................................................
+
+17. Valid Parentheses
+def is_valid_parentheses(s):
+ stack = []
+ mapping = {')': '(', '}': '{', ']': '['}
+ for char in s:
+ if char in mapping:
+ top = stack.pop() if stack else '#'
+ if mapping[char] != top:
+ return False
+ else:
+ stack.append(char)
+ return not stack
+print(is_valid_parentheses("()[]{}"))
+
+Output:
+True
+..........................................................................
+
+18. Custom Pattern
+def custom_pattern():
+ print("5 4 3 2 1")
+ print("D C B A")
+ print("3 2 1")
+ print("B A")
+ print("1")
+custom_pattern()
+
+Output:
+5 4 3 2 1
+D C B A
+3 2 1
+B A
+1
+.....................................................................
