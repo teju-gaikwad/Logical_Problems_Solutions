@@ -1,0 +1,379 @@
+Logical Problems Solutions
+
+1. Second Largest Element in an Array (Without Sorting)
+
+Problem: Find the second largest element in an array without sorting, using built-in methods, or removing duplicates.
+
+Approach: Traverse the array once to find the largest and second largest elements.
+
+# Function to find second largest element
+def second_largest(arr):
+    first, second = float('-inf'), float('-inf')
+    for num in arr:
+        if num > first:
+            second = first
+            first = num
+        elif num > second and num != first:
+            second = num
+    return second
+
+# Example
+arr = [12, 35, 1, 10, 34, 1, 35]
+print("Second largest element is:", second_largest(arr))
+
+Output:
+Second largest element is: 34
+.............................................................................
+
+2. Reverse an Integer (Without Converting to String)
+
+Problem: Reverse an integer without using strings or built-in methods.
+
+Approach: Use arithmetic operations (modulo and division).
+
+# Function to reverse an integer
+def reverse_integer(n):
+    rev = 0
+    while n != 0:
+        rev = rev * 10 + n % 10
+        n //= 10
+    return rev
+
+# Example
+num = 12345
+print("Reversed integer:", reverse_integer(num))
+
+Output:
+Reversed integer: 54321
+............................................................................
+
+3. Swap Values Without Using a Variable
+
+Problem: Swap two values without using a third variable.
+
+Approach: Use arithmetic operations (addition and subtraction).
+
+# Function to swap values without a variable
+a, b = 10, 12
+a = a + b
+b = a - b
+a = a - b
+
+print("a:", a, "b:", b)
+
+Output:
+a: 12 b: 10
+...........................................................................
+
+4. Find the reverse of a string
+
+Explanation: Each character is traversed once.
+
+
+def reverse_string(s):
+    reversed_str = ""
+    for char in s:
+        reversed_str = char + reversed_str
+    return reversed_str
+
+# Example
+print(reverse_string("hello"))  
+
+Output: "olleh"
+.....................................................................
+
+ 
+5. Find missing elements from an array
+
+Explanation: Computes sum once and subtracts the array sum.
+
+def find_missing(arr, n):
+    total = n * (n + 1) // 2  # Sum of first n natural numbers
+    return total - sum(arr)
+
+# Example
+arr = [1, 2, 4, 5, 6]
+n = 6
+print(find_missing(arr, n))  
+
+ Output: 3
+.....................................................................
+
+6. Check if a string is a palindrome
+
+Explanation: Iterates from both ends towards the center.
+
+def is_palindrome(s):
+    left, right = 0, len(s) - 1
+    while left < right:
+        if s[left] != s[right]:
+            return False
+        left += 1
+        right -= 1
+    return True
+
+# Example
+print(is_palindrome("madam"))  
+
+Output: True
+.........................................................................
+
+7. Fibonacci series using recursion
+
+Explanation: Each function call branches into two new calls.
+
+def fibonacci_recursive(n):
+    if n <= 1:
+        return n
+    return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
+
+# Example
+n = 10
+print([fibonacci_recursive(i) for i in range(n)])  
+
+output
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+.........................................................................
+
+8. Fibonacci series without recursion
+
+Explanation: Uses a simple loop to calculate Fibonacci numbers.
+
+def fibonacci_iterative(n):
+    a, b = 0, 1
+    result = []
+    for _ in range(n):
+        result.append(a)
+        a, b = b, a + b
+    return result
+
+# Example
+print(fibonacci_iterative(10))  
+
+ Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+....................................................................
+
+9. Second largest number in an array without sorting
+
+Explanation: Scans the array once.
+
+def second_largest(arr):
+    largest = second = float('-inf')
+    for num in arr:
+        if num > largest:
+            second, largest = largest, num
+        elif num > second and num != largest:
+            second = num
+    return second
+
+# Example
+print(second_largest([12, 35, 1, 10, 34, 1, 35]))  
+
+Output: 34
+.....................................................................
+
+10. Find even numbers in a list
+
+Explanation: Checks each element for divisibility by 2.
+
+def find_even_numbers(arr):
+    return [num for num in arr if num % 2 == 0]
+
+# Example
+print(find_even_numbers([1, 2, 3, 4, 5, 6]))  
+
+Output: [2, 4, 6]
+.....................................................................
+
+11. Find prime numbers from 1 to n
+
+def prime_numbers(n):
+    primes = []
+    for num in range(2, n + 1):
+        is_prime = True
+        for i in range(2, int(num ** 0.5) + 1):
+            if num % i == 0:
+                is_prime = False
+                break
+        if is_prime:
+            primes.append(num)
+    return primes
+
+# Example
+print(prime_numbers(20))  
+
+Output: [2, 3, 5, 7, 11, 13, 17, 19]
+.......................................................................
+
+12. Find square root of a number (using binary search)
+
+def square_root(n):
+    left, right = 0, n
+    while left <= right:
+        mid = (left + right) // 2
+        if mid * mid == n:
+            return mid
+        elif mid * mid < n:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return right
+
+# Example
+print(square_root(25))  
+
+ Output: 5
+..........................................................................
+
+13. Find duplicates in an array (2 methods)
+Method 1: Using set
+
+def find_duplicates(arr):
+    seen = set()
+    duplicates = set()
+    for num in arr:
+        if num in seen:
+            duplicates.add(num)
+        seen.add(num)
+    return list(duplicates)
+
+# Example
+print(find_duplicates([1, 2, 3, 2, 4, 5, 6, 5]))  
+
+ Output: [2, 5]
+.....................................................................
+
+Method 2: Using frequency count
+
+from collections import Counter
+
+def find_duplicates(arr):
+    count = Counter(arr)
+    return [k for k, v in count.items() if v > 1]
+
+print(find_duplicates([1, 2, 3, 2, 4, 5, 6, 5]))
+
+ Output: [2, 5]
+...............................................................
+
+14. Find pairs with sum 100
+
+def find_pairs(arr, target):
+    seen = {}
+    pairs = []
+    for num in arr:
+        diff = target - num
+        if diff in seen:
+            pairs.append((diff, num))
+        seen[num] = True
+    return pairs
+
+# Example
+print(find_pairs([80, 60, 10, 50, 30, 100, 0, 50], 100))  
+
+output
+[(50, 50), (0, 100)]
+.............................................................
+
+15. Find point of intersection in two linked lists
+
+def find_intersection(list1, list2):
+    set1 = set(list1)
+    return [num for num in list2 if num in set1]
+
+print(find_intersection([4, 5, 6, 7, 8, 9], [6, 7, 8, 9]))
+
+Output
+[6, 7, 8, 9]
+
+...............................................................
+
+16. Group anagrams
+
+from collections import defaultdict
+
+def group_anagrams(words):
+    anagrams = defaultdict(list)
+    for word in words:
+        key = "".join(sorted(word))
+        anagrams[key].append(word)
+    return list(anagrams.values())
+
+print(group_anagrams(["eat","tea","tan","ate","nat","bat"]))
+
+output
+[['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+...................................................
+
+17. Frequency of each character in a string
+
+from collections import Counter
+
+def char_frequency(s):
+    freq = Counter(s)
+    return dict(sorted(freq.items(), key=lambda item: item[1], reverse=True))
+
+print(char_frequency("Engineer"))
+
+Output
+{'n': 2, 'e': 2, 'E': 1, 'g': 1, 'i': 1, 'r': 1}
+........................................................
+
+18. Sum of squares of first n prime numbers
+def sum_of_squares(n):
+    primes = prime_numbers(n * 10)
+    return sum(p ** 2 for p in primes[:n])
+
+print(sum_of_squares(4))
+
+output
+87
+4 + 9 + 25 + 49 = 87
+..............................................................
+
+19. count lowercase and uppercase
+input = "Hello world!"
+output = uppercase = 1, lowercase = 9
+
+def count_case(s):
+    uppercase = 0
+    lowercase = 0
+    for char in s:
+        if char.isupper():
+            uppercase += 1
+        elif char.islower():
+            lowercase += 1
+    return uppercase, lowercase
+
+# Example
+s = "Hello world!"
+upper, lower = count_case(s)
+print(f"Uppercase = {upper}, Lowercase = {lower}")
+
+output
+
+Uppercase = 1, Lowercase = 9
+
+
+Given the string:
+"Hello world!"
+
+Step-by-step count:
+
+'H' → Uppercase → count: 1
+'e' → Lowercase → count: 1
+'l' → Lowercase → count: 2
+'l' → Lowercase → count: 3
+'o' → Lowercase → count: 4
+' ' → space → ignored
+'w' → Lowercase → count: 5
+'o' → Lowercase → count: 6
+'r' → Lowercase → count: 7
+'l' → Lowercase → count: 8
+'d' → Lowercase → count: 9
+'!' → punctuation → ignored
+ Uppercase count: 1 (H)
+ Lowercase count: 9 (e, l, l, o, w, o, r, l, d)
+
+
+
